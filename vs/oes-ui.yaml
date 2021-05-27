@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: oes-ui-route
+spec:
+  hosts:
+  - "oesui.albertsons.opsmx.com"
+  gateways:
+  - spinnaker-gateway
+  http:
+  - name: "oes-route"
+    match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: oes-ui
+        port:
+          number: 80

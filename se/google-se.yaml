@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: external-https-services
+spec:
+  hosts:
+  - api.dropboxapi.com
+  - api.facebook.com
+  - www.google.com
+  - hub.docker.com
+  - github.com
+  - index.docker.io
+  location: MESH_EXTERNAL
+  ports:
+  - number: 443
+    name: https
+    protocol: TLS
+  resolution: DNS
+
