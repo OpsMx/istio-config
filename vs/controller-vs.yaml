@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: controller-route
+spec:
+  hosts:
+  - controller-agent.albertsons.opsmx.com
+  gateways:
+  - controller-gateway
+  tls:
+    - match:
+      - port: 443
+        sniHosts:
+        - controller-agent.albertsons.opsmx.com
+      route:
+      - destination:
+          host: opsmx-controller-controller1
+          port:
+            number: 9001
